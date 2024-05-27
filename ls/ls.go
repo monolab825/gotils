@@ -21,6 +21,17 @@ func printFileNames(dirToRead string) {
 	}
 }
 
+func printFileInfo(dirToRead string) {
+	files, err := os.ReadDir(dirToRead)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	for _, f := range files {
+		fmt.Println(f.Name(), f.Type().IsDir(), f.Type().Perm())
+	}
+}
+
 func visitAllFiles() {
 	err := filepath.Walk(".",
 		func(path string, info os.FileInfo, err error) error {
@@ -63,12 +74,22 @@ func main() {
 	args := os.Args[1:]
 
 	var defaultDir = true
+	var recursive = false
+
 	for _, arg := range args {
-		fmt.Println(arg)
+		//		fmt.Println(arg)
 		if arg[0] == '-' {
 			fmt.Println("Parse the options!")
+			if arg[1] == 'l' {
+				recursive = true
+			}
 		} else {
-			printFileNames(arg)
+			if recursive {
+				printFileInfo(arg)
+			} else {
+				printFileNames(arg)
+			}
+
 			defaultDir = false
 		}
 	}
