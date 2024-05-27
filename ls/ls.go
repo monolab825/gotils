@@ -21,6 +21,10 @@ func printFileNames(dirToRead string) {
 	}
 }
 
+/* Prints the names of every file in the current directory
+ * Long version, so additional information is printed
+ * TODO: Color code directories (IsDir() == true), just like the real `ls` does
+ */
 func printFileInfo(dirToRead string) {
 	files, err := os.ReadDir(dirToRead)
 	if err != nil {
@@ -74,17 +78,17 @@ func main() {
 	args := os.Args[1:]
 
 	var defaultDir = true
-	var recursive = false
+	var longOutput = false
 
 	for _, arg := range args {
 		//		fmt.Println(arg)
 		if arg[0] == '-' {
 			fmt.Println("Parse the options!")
 			if arg[1] == 'l' {
-				recursive = true
+				longOutput = true
 			}
 		} else {
-			if recursive {
+			if longOutput {
 				printFileInfo(arg)
 			} else {
 				printFileNames(arg)
