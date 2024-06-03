@@ -15,7 +15,8 @@ TODO:
 ## grep
 Complete:
 - Basic regex matching
+- Pipe output from another program into grep
 
 TODO:
-- Pipe output from another program into grep
 - Option flags
+- Colorized output
