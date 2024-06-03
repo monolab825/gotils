@@ -11,3 +11,11 @@ TODO:
 - Add more flags
     - Only flag implemented now is `-l`
     - `-a` is particularly important
+
+## grep
+Complete:
+- Basic regex matching
+
+TODO:
+- Pipe output from another program into grep
+- Option flags
